@@ -1,0 +1,7 @@
+{
+  "name": "audio-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
