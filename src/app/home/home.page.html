@@ -1,20 +1,77 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title> Audio </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Audio</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="btn">
+    <ion-button
+      fill="clear"
+      size="large"
+      (click)="recordAudio()"
+      *ngIf="!recording"
+    >
+      <ion-icon name="mic"></ion-icon>&nbsp; Start Recording
+    </ion-button>
+    <!-- <ion-button
+      fill="clear"
+      size="large"
+      color="warning"
+      (click)="pauseRecording()"
+      *ngIf="!recordingPaused && recording"
+    >
+      <ion-icon name="pause"></ion-icon>&nbsp; Pause Recording
+    </ion-button>
+    <ion-button
+      fill="clear"
+      size="large"
+      color="warning"
+      (click)="resumeRecording()"
+      *ngIf="recordingPaused && recording"
+    >
+      <ion-icon name="play"></ion-icon>&nbsp; Resume Recording
+    </ion-button>
+    <ion-button
+      fill="clear"
+      size="large"
+      color="danger"
+      (click)="stopRecording()"
+      *ngIf="recording"
+    >
+      <ion-icon name="stop"></ion-icon>&nbsp; Stop Recording
+    </ion-button> 
+    <ion-button (click)="deleteAll()" color="danger" size="large" fill="clear">
+      <ion-icon name="trash-outline"></ion-icon>&nbsp; Delete All
+    </ion-button> -->
+  </div>
+
+  <div>
+    <ion-list>
+      <ion-item *ngFor="let file of files, let i = index">
+        <p>
+          {{file.name}} <br />
+          {{file.fullPath}} <br />
+          {{file.size / 1000 / 1000}} MB
+        </p>
+        <div slot="end">
+          <ion-button (click)="playAudio(file)" fill="clear">
+            <ion-icon name="play"></ion-icon>
+          </ion-button>
+          <ion-button (click)="pauseAudio(file)" fill="clear">
+            <ion-icon name="pause" color="warning"></ion-icon>
+          </ion-button>
+          <ion-button (click)="deleteAudio(file, i)" fill="clear">
+            <ion-icon name="trash" color="danger"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>
